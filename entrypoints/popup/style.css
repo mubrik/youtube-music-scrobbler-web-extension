@@ -1,0 +1,584 @@
+/* --- Global Styles --- */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --bg-dark: #121212;
+    --card-bg: #1A1A1A;
+    --accent-pink: #E91E63;
+    --accent-blue: #1E88E5;
+    --accent-blue-hover: #1976D2;
+    --accent-red: #da1414;
+    --accent-red-hover: #e31f1fb5;
+    --text-primary: #FFFFFF;
+    --text-secondary: #AAAAAA;
+    --text-button-secondary: #000000;
+    --border-color: #333333;
+    /* Spacing & Borders */
+    --border-radius: 8px;
+    --base-padding: 16px;
+    /* Typography */
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 20px;
+    width: 320px; /* Standard extension popup width */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+h1, h2, p {
+    margin: 0;
+}
+
+/* --- Container --- */
+.main-app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+
+/* --- Authorization Gate (First Run / Logged Out View) --- */
+.authorization-gate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* --- Main Header --- */
+.main-header {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.main-footer {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.fm-logo {
+    color: var(--accent-pink);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.extension-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* --- Card Common Styles --- */
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: var(--base-padding);
+    border: 1px solid transparent;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Red glow effect for active state */
+.card.current-track {
+    border-color: rgba(233, 30, 99, 0.3);
+    box-shadow: 0 0 10px rgba(233, 30, 99, 0.15);
+}
+
+.card-header {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+/* --- Now Playing Card --- */
+.track-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.album-art-placeholder {
+    width: 48px;
+    height: 48px;
+    background-color: #2a2a2a;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-icon {
+    font-size: 24px;
+    opacity: 0.5;
+}
+
+.track-text {
+    flex: 1;
+}
+
+.track-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.track-sub-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.artist-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.track-play-count {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.progress-bar {
+    height: 2px;
+    background-color: #333333;
+    margin-top: 12px;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 30%; /* Set via JavaScript */
+    background-color: var(--accent-pink);
+}
+
+/* --- Settings Card --- */
+.setting-item {
+    margin-bottom: 16px;
+}
+
+.toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+/* --- Styled Dropdown --- */
+.styled-select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 13px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path fill="%23AAAAAA" d="M1 3.5l4 4 4-4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px top 50%;
+}
+
+.styled-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+/* --- Action Item --- */
+.connect-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* --- Footer Profile Button --- */
+.profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.profile-icon {
+    font-size: 16px;
+}
+
+/* --- Button Common Styles --- */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.icon-btn {
+    border-radius: 4px;
+    font-family: var(--font-family);
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-icon {
+    font-weight: bold;
+}
+
+/* Connect to Last.fm (Blue) */
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-blue-hover);
+}
+
+.btn-primary .btn-icon {
+    color: #FFFFFF;
+}
+
+/* Profile Button (White) */
+.btn-secondary {
+    background-color: #FFFFFF;
+    color: var(--text-button-secondary);
+}
+
+.btn-secondary:hover {
+    background-color: #DDDDDD;
+}
+
+/* Clear Data */
+.btn-danger {
+    background-color: var(--accent-red);
+    color: var(--text-primary);
+}
+
+.btn-danger:hover {
+    background-color: var(--accent-red-hover);
+}
+
+.btn-danger .btn-icon {
+    color: #FFFFFF;
+}
+
+/* --- Custom Toggle Switch --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #444444;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-blue);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--accent-blue);
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* Wrapper for correct alignment: Artist left, Button right */
+.artist-and-like {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+/* Common button resets and core styling */
+.like-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 20px; /* Small, tappable size */
+    height: 20px;
+    color: var(--text-secondary); /* Default gray, matches artist name */
+    transition: color 0.2s, transform 0.1s;
+    position: relative; /* For absolute positioning of the fill SVG */
+}
+
+/* Hover effect */
+.like-button:hover {
+    color: var(--accent-pink);
+}
+
+/* Press effect (small scale down) */
+.like-button:active {
+    transform: scale(0.9);
+}
+
+/* Core SVG styling */
+.heart-icon {
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+/* The Outline heart is visible by default */
+.heart-icon.outline {
+    display: block;
+}
+
+/* The Filled heart is present but hidden by default */
+.heart-icon.fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    fill: var(--accent-pink); /* The "liked" color */
+    stroke: none; /* No stroke for the fill state */
+}
+
+/* --- State: Liked --- */
+/* (This is the class your JavaScript will toggle on the button) */
+
+/* When the button has the 'liked' class... */
+.like-button.liked {
+    color: var(--accent-pink);
+}
+
+/* Hide the outline... */
+.like-button.liked .heart-icon.outline {
+    opacity: 0;
+}
+
+/* ...and reveal the full-pink fill */
+.like-button.liked .heart-icon.fill {
+    opacity: 1;
+}
+
+/* --- State: Loading --- */
+.like-spinner {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: like-spin 0.7s linear infinite;
+}
+
+.like-button.loading .heart-icon {
+    opacity: 0;
+}
+
+.like-button.loading .like-spinner {
+    display: block;
+}
+
+@keyframes like-spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+/* auth gate styles */
+
+.auth-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-padding) * 1.5);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+/* --- Graphic Elements --- */
+.auth-graphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.auth-icon-ytm {
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.auth-connect-symbol {
+    font-size: 20px;
+    opacity: 0.7;
+    color: var(--accent-pink);
+    text-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
+}
+
+.auth-icon-lastfm {
+    color: var(--accent-pink);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* --- Text Styles --- */
+.auth-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.auth-description {
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.auth-details {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+/* --- Button Styling (reusing existing styles) --- */
+.auth-connect-btn {
+    width: auto; /* Allow button to shrink-wrap its content */
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+/* --- Fine Print --- */
+.auth-footer-text {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 12px;
+    opacity: 0.8;
+}
+
+/* Styles for the toast message */
+#toast {
+    visibility: hidden; /* Hide the toast by default */
+    min-width: 120px;
+    max-width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px;
+    position: fixed;
+    z-index: 1;
+    top: 30%;
+    box-shadow: -1px -2px 3px 6px rgb(187 75 75 / 20%);
+}
+
+/* The animation when showing the toast */
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s;
+}
+
+#toast.hide {
+    visibility: hidden;
+    -webkit-animation: fadeOut 0.5s 2.5s;
+    animation: fadeOut 0.5s 2.5s;
+}
+
+#toast.error {
+    background-color: #d65f5f;
+}
+
+/* Keyframe animations */
+@-webkit-keyframes fadeIn {
+    from {top: 0; opacity: 0;}
+    to {top: 30%; opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {top: 0; opacity: 0;}
+    to {top: 30%; opacity: 1;}
+}
+
+@-webkit-keyframes fadeOut {
+    from {top: 30%; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeOut {
+    from {top: 30%; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
