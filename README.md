@@ -1,0 +1,12 @@
+# Youtube Music Scrobbler Web Extension
+
+An extension for chromium web based browser, for keeping lastfm and youtube music in sync
+
+## Features
+
+1. Sync playing tracks on youtube music to lastFM
+2. Filter youtube music ADs
+3. Like and Unlike track on LastFM
+4. View Counts for track
+
+<img width="319" height="469" alt="Screenshot 2026-03-10 at 17 33 15" src="https://github.com/user-attachments/assets/1477ce49-9c5e-48b6-adf1-40cb81c9f01d" />
