@@ -14,6 +14,14 @@ export default defineConfig({
             "https://music.youtube.com/*",
             "https://ws.audioscrobbler.com/",
             "https://www.last.fm/api/*",
-        ]
+        ],
+        browser_specific_settings: {
+            gecko: {
+                // @ts-ignore this is required for firefox build
+                data_collection_permissions: {
+                    required: ["none"]
+                }
+            }
+        }
     }
 });
