@@ -79,10 +79,11 @@ export default defineContentScript({
 
       const title = titleEl.textContent?.trim() ?? '';
 
-      // Byline anchor links: [0] = artist, [1] = album (optional)
+      // Byline anchor links: [0] = artist, [length - 1] = album (optional)
+      // could be multiple artist so use the last as album
       const bylineLinks = Array.from(bylineEl.querySelectorAll<HTMLAnchorElement>('a'));
       const artist = bylineLinks[0]?.textContent?.trim() ?? bylineEl.textContent?.trim() ?? '';
-      const album = bylineLinks[1]?.textContent?.trim() ?? '';
+      const album = bylineLinks[bylineLinks.length - 1]?.textContent?.trim() ?? '';
 
       const { currentTime, duration } = getPlaybackTimes();
 

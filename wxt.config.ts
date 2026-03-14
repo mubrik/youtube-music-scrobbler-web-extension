@@ -8,7 +8,6 @@ export default defineConfig({
         permissions: [
             'storage',
             'tabs',
-            'activeTab',
             'scripting',
         ],
         host_permissions: [

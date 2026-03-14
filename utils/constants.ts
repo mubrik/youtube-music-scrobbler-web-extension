@@ -23,6 +23,7 @@ const DefaultScrobbleSettings = { scrobbleEnabled: true, scrobbleRate: "50" };
 const DefaultNowPlaying = {
   artist: "",
   title: "",
+  album: "",
   trackAddedAt: 0,
   playCount: "",
   duration: 0,

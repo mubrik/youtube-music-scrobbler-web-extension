@@ -169,14 +169,16 @@ export default defineBackground(() => {
         }
 
         if (message.type === MessageTypes.LASTFM_SET_NOW_PLAYING) {
-            const { artist, title, duration, currentTime } = message.payload as TrackInfo;
-            const payload = { artist, track: title, method: "track.updateNowPlaying" };
+            const { artist, title, duration, currentTime, album } = message.payload as TrackInfo;
+            const payload = { artist, track: title, album, method: "track.updateNowPlaying" };
+
             // update last fm now playing
             lastFmRequest({ method: "POST", payload })
                 .then(() => {
                     browser.storage.session?.set({
                         artist,
                         title,
+                        album,
                         duration,
                         currentTime,
                         playCount: "",
@@ -217,8 +219,8 @@ export default defineBackground(() => {
         }
 
         if (message.type === MessageTypes.LASTFM_SET_SCROBBLE_TRACK) {
-            const { artist, title, trackStartedAt } = message.payload as TrackInfo & { trackStartedAt: number };
-            const payload = { artist, track: title, timestamp: String(trackStartedAt), method: "track.scrobble" };
+            const { artist, title, trackStartedAt, album } = message.payload as TrackInfo & { trackStartedAt: number };
+            const payload = { artist, track: title, album, timestamp: String(trackStartedAt), method: "track.scrobble" };
             lastFmRequest({ method: "POST", payload })
                 .then((_) => {
                     // pass
@@ -264,10 +266,15 @@ export default defineBackground(() => {
     });
 
     browser.runtime.onInstalled.addListener(async () => {
-        // restore session if availabel
-        const prevSetup = await browser.storage.sync?.get(DefaultUserSession);
-        if (prevSetup) {
+        // we clear and ask for reauth, for now.
+        // the session keys for versions before 2.0 are all invalid, so we should force a new session get
+        browser.tabs.create({ url: "popup.html" });
+        return;
+        const prevSetup = await browser.storage.sync?.get<typeof DefaultUserSession>(DefaultUserSession);
+        if (prevSetup.session) {
             browser.storage.local?.set(prevSetup);
+        } else {
+            browser.tabs.create({ url: "popup.html" });
         }
     });
 });
