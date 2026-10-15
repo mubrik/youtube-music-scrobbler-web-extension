@@ -17,7 +17,6 @@ export default defineConfig({
         ],
         browser_specific_settings: {
             gecko: {
-                // @ts-ignore this is required for firefox build
                 data_collection_permissions: {
                     required: ["none"]
                 }

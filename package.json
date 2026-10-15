@@ -1,7 +1,7 @@
 {
   "name": "lastfm-music-scrobbler",
   "private": true,
-  "version": "2.0.4",
+  "version": "2.2.4",
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -15,9 +15,9 @@
   },
   "devDependencies": {
     "typescript": "^5.9.3",
-    "wxt": "^0.20.18"
+    "wxt": "^0.21.4"
   },
   "dependencies": {
-    "js-md5": "^0.8.3"
+    "js-md5": "^0.9.2"
   }
 }

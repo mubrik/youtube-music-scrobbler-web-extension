@@ -252,6 +252,14 @@ export default defineBackground(() => {
                 })
         }
 
+        if (message.type === MessageTypes.SAVE_TRACK_DURATIONS) {
+            const { duration, currentTime } = message.payload as { duration: number; currentTime: number };
+            // Handle saving track duration
+            if (duration > 0) {
+                browser.storage.session?.set({ duration, currentTime });
+            }
+        }
+
         return true;
     });
 

@@ -1,3 +1,5 @@
+export type YtMusicPlayerType = "ytmusic-player-bar" | "ytmusic-miniplayer";
+
 export interface UserInfo { username: string; subscriber: string; session: string }
 
 export interface TrackInfo {

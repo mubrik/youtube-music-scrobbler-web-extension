@@ -237,7 +237,8 @@ async function setNowPlayingFromSessionStore() {
     if (artistElem && artist) artistElem.innerHTML = artist;
     if (playCountElem) playCountElem.innerHTML = `Plays: ${playCount || "N/A"}`;
     if (duration && currentTime && progress) {
-        const durrPercent = Math.round((Math.max(Math.round(currentTime), 1) / 100) * Math.round(duration));
+        // Calculate the percentage of the track that has played
+        const durrPercent = (duration > 0) ? Math.round((currentTime / duration) * 100) : 0;
         progress.style.width = `${durrPercent}%`;
     }
     updateTrackLoveStatus(isLoved);
